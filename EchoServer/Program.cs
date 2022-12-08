@@ -40,19 +40,19 @@ namespace Server
                                 Span<byte> span = recvBuff.AsSpan().Slice(0, recvBytes);
                                 Console.WriteLine($"Recv : {BitConverter.ToString(span.ToArray()).Replace("-", " ")}");
 
-                                Random rd = new Random();
-                                int rand = rd.Next(251);
-                                rand += 4;
+                                //Random rd = new Random();
+                                //int rand = rd.Next(251);
+                                //rand += 4;
 
-                                byte[] sendBuff = new byte[rand];
-                                rd.NextBytes(sendBuff);
-                                sendBuff[1] = 0x80;
-                                sendBuff[2] = (byte)(rand - 4);
-                                sendBuff[3] = 0x00;
-                                sendBuff[0] = 0x64;
+                                //byte[] sendBuff = new byte[rand];
+                                //rd.NextBytes(sendBuff);
+                                //sendBuff[1] = 0x80;
+                                //sendBuff[2] = (byte)(rand - 4);
+                                //sendBuff[3] = 0x00;
+                                //sendBuff[0] = 0x64;
 
-                                Console.WriteLine($"Send : {BitConverter.ToString(sendBuff).Replace("-", " ")}");
-                                clientSocket.Send(sendBuff);
+                                Console.WriteLine($"Send : {BitConverter.ToString(span.ToArray()).Replace("-", " ")}");
+                                clientSocket.Send(span);
                             }
                             else
                                 break;
